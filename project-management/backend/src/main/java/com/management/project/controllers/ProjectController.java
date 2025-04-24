@@ -70,13 +70,9 @@ public class ProjectController {
         project.setDescription(projectRequest.getDescription());
         project.setProblemStatement(projectRequest.getProblemStatement());
         project.setLeader(leader);
-        
-        // Default values
         project.setCreatedAt(LocalDateTime.now());
         project.setUpdatedAt(LocalDateTime.now());
         project.setProblemStatementApproved(false);
-        
-        // Add the leader as a member as well
         project.getMembers().add(leader);
         
         Project savedProject = projectRepository.save(project);
