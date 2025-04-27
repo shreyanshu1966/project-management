@@ -88,29 +88,37 @@ public class AuthController {
         Set<String> strRoles = signUpRequest.getRoles();
         Set<Role> roles = new HashSet<>();
 
-        if (strRoles == null) {
-            Role memberRole = roleRepository.findByName(ERole.ROLE_MEMBER)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            roles.add(memberRole);
-        } else {
-            strRoles.forEach(role -> {
-                switch (role) {
-                    case "leader":
-                        Role leaderRole = roleRepository.findByName(ERole.ROLE_LEADER)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(leaderRole);
-                        break;
-                    default:
-                        Role memberRole = roleRepository.findByName(ERole.ROLE_MEMBER)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(memberRole);
-                }
-            });
+        try {
+            if (strRoles == null || strRoles.isEmpty()) {
+                // Default to MEMBER role if none specified
+                Role memberRole = roleRepository.findByName(ERole.ROLE_MEMBER)
+                        .orElseThrow(() -> new RuntimeException("Error: Member role not found in database!"));
+                roles.add(memberRole);
+            } else {
+                strRoles.forEach(role -> {
+                    switch (role.toLowerCase()) {
+                        case "leader":
+                            Role leaderRole = roleRepository.findByName(ERole.ROLE_LEADER)
+                                    .orElseThrow(() -> new RuntimeException("Error: Leader role not found in database!"));
+                            roles.add(leaderRole);
+                            break;
+                        case "member":
+                        default:
+                            Role memberRole = roleRepository.findByName(ERole.ROLE_MEMBER)
+                                    .orElseThrow(() -> new RuntimeException("Error: Member role not found in database!"));
+                            roles.add(memberRole);
+                    }
+                });
+            }
+
+            user.setRoles(roles);
+            userRepository.save(user);
+
+            return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+        } catch (RuntimeException e) {
+            return ResponseEntity
+                    .internalServerError()
+                    .body(new MessageResponse(e.getMessage()));
         }
-
-        user.setRoles(roles);
-        userRepository.save(user);
-
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
 }

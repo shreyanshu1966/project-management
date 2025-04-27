@@ -6,8 +6,10 @@ C:\Users\rames\Desktop\lm\new\new\New folder\project-management\backend\src\main
 C:\Users\rames\Desktop\lm\new\new\New folder\project-management\backend\src\main\java\com\management\project\models\TaskStatus.java
 C:\Users\rames\Desktop\lm\new\new\New folder\project-management\backend\src\main\java\com\management\project\config\CorsFilter.java
 C:\Users\rames\Desktop\lm\new\new\New folder\project-management\backend\src\main\java\com\management\project\repositories\UserRepository.java
+C:\Users\rames\Desktop\lm\new\new\New folder\project-management\backend\src\main\java\com\management\project\controllers\UserController.java
 C:\Users\rames\Desktop\lm\new\new\New folder\project-management\backend\src\main\java\com\management\project\models\ERole.java
 C:\Users\rames\Desktop\lm\new\new\New folder\project-management\backend\src\main\java\com\management\project\controllers\ProjectController.java
+C:\Users\rames\Desktop\lm\new\new\New folder\project-management\backend\src\main\java\com\management\project\payload\response\UserInfoResponse.java
 C:\Users\rames\Desktop\lm\new\new\New folder\project-management\backend\src\main\java\com\management\project\security\jwt\JwtAuthenticationFilter.java
 C:\Users\rames\Desktop\lm\new\new\New folder\project-management\backend\src\main\java\com\management\project\config\WebConfig.java
 C:\Users\rames\Desktop\lm\new\new\New folder\project-management\backend\src\main\java\com\management\project\security\jwt\JwtUtils.java
